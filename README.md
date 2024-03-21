@@ -8,6 +8,3 @@ This is my personal portfolio I created using a custom theme.
 ```
 docker-compose up -d
 ```
-
-
-Test
