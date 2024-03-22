@@ -8,6 +8,7 @@
 /wp-admin/
 /wp-content/index.php
 /wp-content/languages
+/wp-content/plugins/*
 /wp-content/plugins/index.php
 /wp-content/themes/index.php
 /wp-includes/
@@ -46,3 +47,4 @@ wp-config.php
 # Note: If you wish to whitelist themes,
 # uncomment the next line
 #/wp-content/themes
+**/**.zip
