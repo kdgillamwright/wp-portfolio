@@ -6,80 +6,47 @@
 get_header();
 ?>
 
-<div class="projects-container text-with-shadow">
-  <h1 class="page-title">
-    <?php the_title(); ?>
-  </h1>
+<div class="projects-container">
+  <div class="project-wrapper">
+    <?php
+    $args = array(
+      'post_type' => 'projects',
+      'posts_per_page' => -1,
+    );
+    $query = new WP_Query($args);
 
-  <?php
-  $args = array(
-    'post_type' => 'projects', // Change 'post' to your custom post type if applicable
-    'posts_per_page' => -1, // Display all posts, you can adjust as needed
-  );
-  $query = new WP_Query($args);
-
-  if ($query->have_posts()): ?>
-    <div class="card-grid-container">
-      <?php while ($query->have_posts()):
-        $query->the_post(); ?>
-        <div <?php post_class('card-body'); ?> id="post-<?php the_ID(); ?>">
-
-          <?php the_post_thumbnail(); ?>
-
-          <h3 class="card-title"><a href="<?php the_permalink(); ?>">
-              <?php the_title(); ?>
-            </a></h3>
-          <div class="card-meta">
-            <span class="card-date">
-              <?= get_the_date(); ?>
-            </span>
-            <span class="card-author">By
-              <a href="<?= esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>">
-                <?= get_the_author_meta('display_name'); ?>
-              </a>
-            </span>
-          </div>
-
-          <!-- App type -->
-          <div>
-            <span>Type: </span>
-            <?php
-            $terms = get_the_terms($post->ID, 'project_type_category');
-
-            foreach ($terms as $term) {
-
-              $term_link = get_term_link($term, 'project_type_category');
-
-              if (is_wp_error($term_link))
-                continue;
-
-              echo $term->name;
-
-            }
-            ?>
-          </div>
-
-          <!-- Technologies -->
-          <div>
-            <span>Technologies: </span>
-            <?php
-            $terms = get_the_terms($post->ID, 'technology_category');
-
-            foreach ($terms as $term) {
-
-              $term_link = get_term_link($term, 'technology_category');
-
-              if (is_wp_error($term_link))
-                continue;
-
-              echo $term->name;
-
-            }
-            ?>
-          </div>
-          <div class="card-text">
-            <?php echo wp_trim_words(get_the_excerpt(), 55, '<a href="' . esc_url(get_permalink()) . '">
-                             <div class="read-more"> Read More...</a></div>'); ?>
+    if ($query->have_posts()): ?>
+      <div class="card-grid-container">
+        <h1 class="page-title text-with-shadow">
+          <?php the_title(); ?>
+        </h1>
+        <?php while ($query->have_posts()):
+          $query->the_post(); ?>
+          <div class="card-body" id="post-<?php the_ID(); ?>">
+            <div class="card-image">
+              <?php the_post_thumbnail('custom-thumbnail'); ?>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title"><a href="<?php the_permalink(); ?>">
+                  <?php the_title(); ?>
+                </a></h3>
+              <!-- Technologies -->
+              <div>
+                <span>Technologies: </span>
+                <?php
+                $terms = get_the_terms($post->ID, 'technology_category');
+                foreach ($terms as $term) {
+                  $term_link = get_term_link($term, 'technology_category');
+                  if (is_wp_error($term_link))
+                    continue;
+                  echo $term->name;
+                }
+                ?>
+              </div>
+              <div class="card-text">
+                <?php echo wp_trim_words(get_the_excerpt(), 55, '<a href="' . esc_url(get_permalink()) . '"><div class="read-more"> Learn More...</div></a>'); ?>
+              </div>
+            </div>
           </div>
         <?php endwhile; ?>
       </div>
@@ -88,5 +55,7 @@ get_header();
     <?php endif; ?>
     <?php get_template_part('template-parts/pagination'); ?>
   </div>
+</div>
 
-  <?php get_footer(); ?>
+<?php get_footer(); ?>
+</div>

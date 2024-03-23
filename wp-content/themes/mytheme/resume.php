@@ -15,10 +15,12 @@ get_header();
       <h1>
         <?php the_title(); ?>
       </h1>
-      <div class="download">
-        <a href="http://kd.gillamwright.com/wp-content/uploads/2024/03/Kayla-Gillam-Wright-Resume-2024.pdf"
-          target="_blank" download>
-          Click here to download my resume</a>
+      <div>
+        <button class="download">
+          <a href="http://kd.gillamwright.com/wp-content/uploads/2024/03/Kayla-Gillam-Wright-Resume-2024.pdf"
+            target="_blank" download>
+            Download</a>
+        </button>
       </div>
     </div>
     <?php the_content(); ?>

@@ -143,3 +143,4 @@ function create_technologies_taxonomy()
 add_action('init', 'register_projects_cpt');
 add_action('init', 'create_projects_taxonomy', 0);
 add_action('init', 'create_technologies_taxonomy', 0);
+// add_image_size('custom-thumbnail', 300, 300, true);
