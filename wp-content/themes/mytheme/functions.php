@@ -36,6 +36,16 @@ function my_theme_setup()
 
 add_action('after_setup_theme', 'my_theme_setup');
 
+
+/**************************************
+ * Favicon
+ ***************************************/
+function add_site_favicon()
+{
+  echo '<link rel="shortcut icon" type="image/x-icon" href="' . get_template_directory_uri() . '/images/favicon.ico" />';
+}
+add_action('wp_head', 'add_site_favicon');
+
 /**************************************
  * Project Post Type
  ***************************************/
@@ -143,4 +153,3 @@ function create_technologies_taxonomy()
 add_action('init', 'register_projects_cpt');
 add_action('init', 'create_projects_taxonomy', 0);
 add_action('init', 'create_technologies_taxonomy', 0);
-// add_image_size('custom-thumbnail', 300, 300, true);

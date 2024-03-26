@@ -9,18 +9,17 @@ get_header();
 ?>
 
 <div class="resume-container">
-  <div class="resume-wrapper text-with-shadow">
+  <div class="resume-wrapper">
 
-    <div class="header">
+    <div class="header  text-with-shadow">
       <h1>
         <?php the_title(); ?>
       </h1>
-      <div>
-        <button class="download">
-          <a href="http://kd.gillamwright.com/wp-content/uploads/2024/03/Kayla-Gillam-Wright-Resume-2024.pdf"
-            target="_blank" download>
-            Download</a>
-        </button>
+      <div class="download-wrapper">
+        <a class="download"
+          href="http://kd.gillamwright.com/wp-content/uploads/2024/03/Kayla-Gillam-Wright-Resume-2024.pdf"
+          target="_blank" download>
+          Download</a>
       </div>
     </div>
     <?php the_content(); ?>

@@ -17,9 +17,11 @@ get_header();
 
     if ($query->have_posts()): ?>
       <div class="card-grid-container">
-        <h1 class="page-title text-with-shadow">
-          <?php the_title(); ?>
-        </h1>
+        <div>
+          <h1 class="page-title text-with-shadow">
+            <?php the_title(); ?>
+          </h1>
+        </div>
         <?php while ($query->have_posts()):
           $query->the_post(); ?>
           <div class="card-body" id="post-<?php the_ID(); ?>">
@@ -31,7 +33,7 @@ get_header();
                   <?php the_title(); ?>
                 </a></h3>
               <!-- Technologies -->
-              <div>
+              <div class="technologies">
                 <span>Technologies: </span>
                 <?php
                 $terms = get_the_terms($post->ID, 'technology_category');
@@ -39,12 +41,12 @@ get_header();
                   $term_link = get_term_link($term, 'technology_category');
                   if (is_wp_error($term_link))
                     continue;
-                  echo $term->name;
+                  echo '<span class="technologies-list">' . $term->name . '</span>';
                 }
                 ?>
               </div>
               <div class="card-text">
-                <?php echo wp_trim_words(get_the_excerpt(), 55, '<a href="' . esc_url(get_permalink()) . '"><div class="read-more"> Learn More...</div></a>'); ?>
+                <?php echo wp_trim_words(get_the_excerpt(), 55, '<div class="learnMore-wrapper"><a class="learnMore" href="' . esc_url(get_permalink()) . '" class="button">Learn More...</a></div>'); ?>
               </div>
             </div>
           </div>
@@ -55,6 +57,10 @@ get_header();
     <?php endif; ?>
     <?php get_template_part('template-parts/pagination'); ?>
   </div>
+</div>
+
+<?php get_footer(); ?>
+</div>
 </div>
 
 <?php get_footer(); ?>
